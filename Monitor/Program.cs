@@ -19,11 +19,11 @@ namespace Monitor
         {
             while (true)
             {
-                var fileLastWriteTime = File.GetLastWriteTime(@"C:\Users\v-yangtian\Desktop\FileTest.txt");
-                Console.WriteLine(DateTime.Now.ToString() + "_" + fileLastWriteTime.ToString());
-                if (fileLastWriteTime.ToString() != lastWriteTime)
+                var fileLastWriteTime = File.GetLastWriteTime(@"C:\Users\v-yangtian\Desktop\FileTest.txt").ToString();
+                Console.WriteLine(DateTime.Now.ToString() + "_" + fileLastWriteTime);
+                if (fileLastWriteTime != lastWriteTime)
                 {
-                    lastWriteTime = fileLastWriteTime.ToString();
+                    lastWriteTime = fileLastWriteTime;
                 }
                 Thread.CurrentThread.Join(1000);
             }
