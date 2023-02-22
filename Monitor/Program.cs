@@ -19,7 +19,7 @@ namespace Monitor
         {
             while (true)
             {
-                var fileLastWriteTime = File.GetLastWriteTime(@"C:\Users\v-yangtian\Desktop\FileTest.txt").ToString();
+                var fileLastWriteTime = File.GetLastWriteTime(@"C:\Users\v-yangtian\Desktop\FileTest.txt").ToString("G");
                 Console.WriteLine(DateTime.Now.ToString() + "_" + fileLastWriteTime);
                 if (fileLastWriteTime != lastWriteTime)
                 {
