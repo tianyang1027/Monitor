@@ -15,7 +15,7 @@ namespace Monitor
             thread.Start();
         }
 
-        static void Monitor()
+        private static void Monitor()
         {
             while (true)
             {
