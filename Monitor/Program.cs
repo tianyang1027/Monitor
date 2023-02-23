@@ -11,22 +11,20 @@ namespace Monitor
         static void Main(string[] args)
         {
             Console.WriteLine(Thread.CurrentThread.ManagedThreadId.ToString());
-            Thread thread = new Thread(new ThreadStart(Monitor));
-            thread.Start();
-        }
-
-        private static void Monitor()
-        {
-            while (true)
+            Thread thread = new Thread(new ThreadStart(() =>
             {
-                var fileLastWriteTime = File.GetLastWriteTime(@"C:\Users\v-yangtian\Desktop\FileTest.txt").ToString("G");
-                Console.WriteLine(DateTime.Now.ToString() + "_" + fileLastWriteTime);
-                if (fileLastWriteTime != lastWriteTime)
+                while (true)
                 {
-                    lastWriteTime = fileLastWriteTime;
+                    var fileLastWriteTime = File.GetLastWriteTime(@"C:\Users\v-yangtian\Desktop\FileTest.txt").ToString("G");
+                    Console.WriteLine(DateTime.Now.ToString() + "_" + fileLastWriteTime);
+                    if (fileLastWriteTime != lastWriteTime)
+                    {
+                        lastWriteTime = fileLastWriteTime;
+                    }
+                    Thread.CurrentThread.Join(1000);
                 }
-                Thread.CurrentThread.Join(1000);
-            }
+            }));
+            thread.Start();
         }
     }
 }
